@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SEO from '../../components/SEO.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+const projects = (await getCollection('projects')).sort((a,b) => a.data.order - b.data.order);
+---
+<BaseLayout>
+  <SEO slot="head" title="Projects" description="Igor, a personal AI assistant, and Trellife, a three-person bootcamp capstone." />
+  <div class="page-container"><header class="page-header"><p class="eyebrow">Personal projects & training</p><h1>Projects</h1></header>
+  <div class="project-grid">{projects.map(project => <ProjectCard project={project} />)}</div></div>
+</BaseLayout>

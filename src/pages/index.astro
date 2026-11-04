@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../config';
+const projects = (await getCollection('projects')).sort((a,b) => a.data.order - b.data.order);
+---
+<BaseLayout>
+  <SEO slot="head" title="Jonathan Dolan — Support & Operations" />
+  <div class="home-page">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Jonathan Dolan · Ramat Gan, Israel</p>
+      <h1 id="hero-title">Reliability, troubleshooting<br /><span>& support operations.</span></h1>
+      <p class="hero-sub">Customer support experience. Full-stack training. Personal tools built with AI coding agents.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">Explore projects</a>
+        <a href={siteConfig.resume} class="btn-secondary" download>Download résumé <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    <section id="projects" class="home-section" aria-labelledby="projects-title">
+      <div class="section-heading"><h2 id="projects-title">Selected projects</h2><span class="eyebrow">01 — 02</span></div>
+      <div class="project-grid">{projects.map(project => <ProjectCard project={project} />)}</div>
+    </section>
+    <section id="about" class="home-section two-column" aria-labelledby="about-title">
+      <div><p class="eyebrow">The person behind the tools</p><h2 id="about-title">About me</h2></div>
+      <div>
+        <p>{siteConfig.author.bio}</p>
+        <p class="evidence-note">At Wolt, my employment agreement listed Support Associate. The Shift Manager role and responsibilities are self-reported.</p>
+        <p class="draft-note">TODO-CLAUDE: final About copy review.</p>
+      </div>
+    </section>
+    <section id="skills" class="home-section" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills & tools</h2>
+      <div class="skills-grid">
+        <div><h3>Support & ops</h3><ul>{siteConfig.supportSkills.map(skill => <li>{skill}</li>)}</ul></div>
+        <div><h3>Web</h3><p class="evidence-note">Training & personal projects</p><ul>{siteConfig.webSkills.map(skill => <li>{skill}</li>)}</ul></div>
+        <div><h3>AI tools</h3><p>{siteConfig.aiTools}</p><p>Directing AI coding agents to build and run personal projects on my own machines.</p></div>
+      </div>
+    </section>
+    <section id="contact" class="home-section contact-section" aria-labelledby="contact-title">
+      <p class="eyebrow">Application & product support</p>
+      <h2 id="contact-title">Get in touch</h2>
+      <nav class="contact-links" aria-label="Contact links">
+        <a href={`mailto:${siteConfig.author.email}`} class="btn-primary">Email Jonathan</a>
+        <a href={siteConfig.social.github}>GitHub</a>
+        <a href={siteConfig.social.linkedin}>LinkedIn</a>
+      </nav>
+    </section>
+  </div>
+</BaseLayout>

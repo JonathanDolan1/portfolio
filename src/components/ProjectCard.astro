@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import MediaSlot from './MediaSlot.astro';
+import { siteConfig } from '../config';
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { data } = project;
+const screenshot = data.screenshots[0];
+---
+<article class:list={['project-card', { featured: data.featured }]}>
+  {screenshot && <MediaSlot path={screenshot.path} alt={screenshot.alt} owner="JONATHAN" kind="Screenshot" {...siteConfig.screenshots} />}
+  <div class="project-copy">
+    <p class="eyebrow">{data.featured ? 'Featured · ' : ''}{data.kind} · {data.year}</p>
+    <h3><a href={`/projects/${project.id}/`}>{data.title}</a></h3>
+    <p>{data.summary}</p>
+    <ul class="stack-tags" aria-label={`${data.title} technologies`}>
+      {data.stack.slice(0, 4).map(item => <li>{item}</li>)}
+    </ul>
+    <a class="case-link" href={`/projects/${project.id}/`}>View {data.title} case study <span aria-hidden="true">→</span></a>
+  </div>
+</article>

@@ -1,0 +1,19 @@
+---
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+interface Props { path: string; alt: string; owner: 'CLAUDE' | 'JONATHAN'; kind: string; width: number; height: number; }
+const { path, alt, owner, kind, width, height } = Astro.props;
+if (!path.startsWith('/images/') || path.includes('..')) throw new Error('Media must use /images/');
+const asset = fileURLToPath(new URL(`../../public${path}`, import.meta.url));
+const ready = existsSync(asset);
+---
+<figure class="media-slot">
+  {ready ? <img src={path} alt={alt} width={width} height={height} loading="lazy" /> : (
+    <div class="media-placeholder" style={`aspect-ratio:${width}/${height}`}>
+      <span class="eyebrow">{kind}</span>
+      <strong>TODO-{owner}</strong>
+      <span>{alt}</span>
+    </div>
+  )}
+  <figcaption>{ready ? alt : `Awaiting ${kind.toLowerCase()}`}</figcaption>
+</figure>

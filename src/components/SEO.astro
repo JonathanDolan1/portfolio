@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../config';
+interface Props { title: string; description?: string; }
+const { title, description = siteConfig.description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
+---
+<title>{title} | Jonathan Dolan</title>
+<meta name="description" content={description} />
+<meta name="author" content={siteConfig.author.name} />
+<link rel="canonical" href={canonicalURL} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={siteConfig.title} />

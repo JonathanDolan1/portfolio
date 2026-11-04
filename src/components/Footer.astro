@@ -1,0 +1,13 @@
+---
+import { siteConfig } from '../config';
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><strong>{siteConfig.author.name}</strong><p>{siteConfig.author.location}</p></div>
+    <nav aria-label="Footer contact links" class="contact-links">
+      <a href={siteConfig.social.github}>GitHub</a>
+      <a href={siteConfig.social.linkedin}>LinkedIn</a>
+      <a href={`mailto:${siteConfig.author.email}`}>Email</a>
+    </nav>
+  </div>
+</footer>
