@@ -5,13 +5,14 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../config';
 const projects = (await getCollection('projects')).sort((a,b) => a.data.order - b.data.order);
+const [headline, emphasis] = siteConfig.author.title.split(' & ');
 ---
 <BaseLayout>
-  <SEO slot="head" title="Jonathan Dolan — Support & Operations" />
+  <SEO slot="head" title={siteConfig.title} noSuffix />
   <div class="home-page">
     <section class="hero" aria-labelledby="hero-title">
-      <p class="eyebrow">Jonathan Dolan · Ramat Gan, Israel</p>
-      <h1 id="hero-title">Reliability, troubleshooting<br /><span>& support operations.</span></h1>
+      <p class="eyebrow">{siteConfig.author.name} · {siteConfig.author.location}</p>
+      <h1 id="hero-title">{headline}{emphasis && <><br /><span>& {emphasis}</span></>}</h1>
       <p class="hero-sub">Customer support experience. Full-stack training. Personal tools built with AI coding agents.</p>
       <div class="hero-cta">
         <a href="#projects" class="btn-primary">Explore projects</a>

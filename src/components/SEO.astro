@@ -1,10 +1,10 @@
 ---
 import { siteConfig } from '../config';
-interface Props { title: string; description?: string; }
-const { title, description = siteConfig.description } = Astro.props;
+interface Props { title: string; description?: string; noSuffix?: boolean; }
+const { title, description = siteConfig.description, noSuffix = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);
 ---
-<title>{title} | Jonathan Dolan</title>
+<title>{noSuffix ? title : `${title} | ${siteConfig.author.name}`}</title>
 <meta name="description" content={description} />
 <meta name="author" content={siteConfig.author.name} />
 <link rel="canonical" href={canonicalURL} />
