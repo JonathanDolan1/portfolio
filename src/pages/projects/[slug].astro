@@ -4,6 +4,7 @@ import type { InferGetStaticPropsType } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SEO from '../../components/SEO.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
+import IgorArchitecture from '../../components/IgorArchitecture.astro';
 import { siteConfig } from '../../config';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -13,6 +14,12 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { project } = Astro.props;
 const { data } = project;
 const { Content } = await render(project);
+if (data.architectureInteractive && project.id !== 'igor') {
+  throw new Error(`architectureInteractive is set on "${project.id}" but only the igor diagram component exists`);
+}
+if (!data.architectureInteractive && !data.architecture) {
+  throw new Error(`Project "${project.id}" needs either architecture (image path) or architectureInteractive: true`);
+}
 ---
 <BaseLayout>
   <SEO slot="head" title={`${data.title} — Case study`} description={data.summary} />
@@ -22,7 +29,7 @@ const { Content } = await render(project);
     <section class="case-study-section"><h2>What it is</h2><p>{data.overview}</p></section>
     <section class="case-study-section"><h2>Problem</h2><p>{data.problem}</p></section>
     <section class="case-study-section"><h2>Solution</h2><p>{data.solution}</p></section>
-    <section class="case-study-section"><h2>Architecture</h2><MediaSlot path={data.architecture} alt={`${data.title} architecture diagram`} owner="CLAUDE" kind="Architecture diagram" {...siteConfig.architecture} /></section>
+    <section class="case-study-section"><h2>Architecture</h2>{data.architectureInteractive ? <IgorArchitecture /> : <MediaSlot path={data.architecture!} alt={`${data.title} architecture diagram`} owner="CLAUDE" kind="Architecture diagram" {...siteConfig.architecture} />}</section>
     <section class="case-study-section"><h2>Stack</h2><ul class="stack-tags">{data.stack.map(item => <li>{item}</li>)}</ul></section>
     <section class="case-study-section"><h2>What I learned</h2><p>{data.learnings}</p></section>
     <section class="case-study-section"><h2>Screenshots</h2><div class="screenshots">{data.screenshots.map(image => <MediaSlot path={image.path} alt={image.alt} owner="JONATHAN" kind="Screenshot" {...siteConfig.screenshots} />)}</div></section>

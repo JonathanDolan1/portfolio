@@ -52,6 +52,8 @@ h2 { font-size: 1.75rem; font-weight: 600; }
 .case-study-header h1 { margin: 1rem 0; }
 .case-study-section { margin: 2.5rem 0; }
 .case-study-section h2 { font-size: 1.5rem; }
+/* The interactive Igor diagram breaks out of the 850px column so its labels stay readable; it stays centred on the page. */
+.case-study .igor-arch { --igor-arch-w: min(1040px, 100vw - 3rem); width: var(--igor-arch-w); margin-left: calc(50% - var(--igor-arch-w) / 2); }
 .media-slot { margin: 1.5rem 0; }
 .media-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; text-align: center; padding: 1.5rem; border: 1px dashed var(--color-border); border-radius: 6px; background: var(--color-bg-elevated); color: var(--color-text-muted); }
 .media-placeholder span:last-child { font-size: .8125rem; max-width: 30ch; }
