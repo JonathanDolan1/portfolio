@@ -1,22 +1,20 @@
 ---
 title: Igor
 year: 2026
-role: Built with AI coding agents under my direction and review
+role: Personal project · built with AI coding agents under my direction and review
 kind: Personal project
-summary: A personal AI assistant running on a home Linux server, with reminders, a morning brief, task tracking, and a monthly spend cap.
-overview: Built with AI coding agents (Claude Code, Codex) under my direction and review. Igor is a personal assistant on a home Lenovo running Xubuntu. I direct and approve its deployments and fixes.
-problem: 'TODO-CLAUDE: describe the personal support or operations problem using Jonathan’s verified account.'
-solution: Telegram chat for its owner, memory, tasks and reminders, a morning brief, status reporting, and a monthly spend cap.
+summary: A personal AI assistant running 24/7 on a home Linux server, with reminders, a daily morning brief, task tracking and a monthly spend cap.
+overview: Igor is a Telegram assistant that runs on an old Lenovo laptop I turned into a home server (Xubuntu). AI coding agents (Claude Code, Codex) wrote most of the code; I set the requirements, review the changes, and direct and approve its deployments and fixes.
+problem: I juggle shift work, a job search and several side projects, and things were slipping between apps and notes. I wanted one always-on assistant I could message for reminders, tasks and a daily overview, and one that would stay reliable and cheap to run without me watching it.
+solution: An owner-only Telegram chat backed by memory, tasks and reminders, a daily morning brief and status reporting. It runs as a systemd service, sends a heartbeat to an outside monitor, and enforces a monthly spend cap on AI usage. A plain-language runbook covers common failures.
 stack:
   - Python
   - Telegram Bot API (python-telegram-bot)
   - Claude API (Anthropic SDK)
   - SQLite
   - systemd on Xubuntu
-  - 'TODO-VERIFY: iCloud CalDAV — not found in the current Igor implementation'
-  - 'healthchecks.io heartbeat — live timestamp verified 4 Nov 2026'
-  - 'TODO-VERIFY: Whisper local speech-to-text — code and readiness confirmed; same-day transcription not verified'
-learnings: 'TODO-CLAUDE: add Jonathan’s verified learning points.'
+  - healthchecks.io heartbeat monitoring
+learnings: Running Igor taught me the operations side of software. A service is only useful if you can tell when it stops, so it reports a heartbeat and its own status. Costs need a hard limit, not good intentions. A runbook written in plain language turns a 2 a.m. failure into a checklist. Directing AI agents also taught me to review changes, ask for tests, and approve deployments only when I understand what changed.
 featured: true
 order: 1
 codeUrl: https://github.com/JonathanDolan1/igor-showcase
@@ -31,6 +29,4 @@ screenshots:
 
 ## Scope of my role
 
-Personal, self-directed project. AI coding agents wrote most of the code under my direction and review. This is not company production experience.
-
-TODO-CLAUDE: final case-study copy and integration evidence review. Do not publish personal data or runtime configuration in screenshots.
+A personal, self-directed project, not company production work. AI coding agents wrote most of the code under my direction and review; I own the requirements, the reviews, the deployments and keeping it running.
