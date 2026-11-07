@@ -1,6 +1,5 @@
 export const siteConfig = {
-  // TODO-CLAUDE: replace with the approved production URL before deployment.
-  url: 'http://localhost:4321',
+  url: 'https://jonathan-dolan.vercel.app',
   language: 'en',
   title: 'Jonathan Dolan | Support & Operations',
   description: 'Jonathan Dolan: customer support operations, application support, and personal projects built with AI coding agents under my direction and review.',

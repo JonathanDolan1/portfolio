@@ -66,3 +66,4 @@ coverage/
 # Environment files are prohibited for this portfolio.
 .env*
 .claude/
+.vercel
