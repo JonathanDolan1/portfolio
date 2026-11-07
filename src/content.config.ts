@@ -18,6 +18,8 @@ const projects = defineCollection({
     order: z.number(),
     codeUrl: z.string().url(),
     codePending: z.boolean().default(false),
+    demoUrl: z.string().url().optional(),
+    demoNote: z.string().optional(),
     architecture: z.string().optional(),
     architectureInteractive: z.boolean().default(false),
     screenshots: z.array(z.object({ path: z.string(), alt: z.string() })),

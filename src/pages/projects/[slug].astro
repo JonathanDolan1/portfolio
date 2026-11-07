@@ -44,6 +44,8 @@ if (!data.architectureInteractive && data.architecture) {
     <div class="prose"><Content /></div>
     <section class="case-study-section code-section"><h2>Code</h2>
       {data.codePending ? <><p>The source code is private. A sanitized showcase repository is in preparation; code walkthroughs are available on request.</p></> : <a href={data.codeUrl}>View {data.title} code on GitHub</a>}
+      {data.demoUrl && <p><a href={data.demoUrl} target="_blank" rel="noopener noreferrer">Live demo of {data.title}</a></p>}
+      {data.demoUrl && data.demoNote && <p>{data.demoNote}</p>}
     </section>
   </article>
 </BaseLayout>
