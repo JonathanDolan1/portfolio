@@ -6,6 +6,8 @@ import SEO from '../../components/SEO.astro';
 import MediaSlot from '../../components/MediaSlot.astro';
 import IgorArchitecture from '../../components/IgorArchitecture.astro';
 import { siteConfig } from '../../config';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
   return projects.map(project => ({ params: { slug: project.id }, props: { project } }));
@@ -20,6 +22,12 @@ if (data.architectureInteractive && project.id !== 'igor') {
 if (!data.architectureInteractive && !data.architecture) {
   throw new Error(`Project "${project.id}" needs either architecture (image path) or architectureInteractive: true`);
 }
+// A static diagram that is not on disk yet hides the whole section instead of showing a placeholder.
+let showArchitecture = Boolean(data.architectureInteractive);
+if (!data.architectureInteractive && data.architecture) {
+  const diagramFile = fileURLToPath(new URL(`../../../public${data.architecture}`, import.meta.url));
+  showArchitecture = existsSync(diagramFile);
+}
 ---
 <BaseLayout>
   <SEO slot="head" title={`${data.title} — Case study`} description={data.summary} />
@@ -29,7 +37,7 @@ if (!data.architectureInteractive && !data.architecture) {
     <section class="case-study-section"><h2>What it is</h2><p>{data.overview}</p></section>
     <section class="case-study-section"><h2>Problem</h2><p>{data.problem}</p></section>
     <section class="case-study-section"><h2>Solution</h2><p>{data.solution}</p></section>
-    <section class="case-study-section"><h2>Architecture</h2>{data.architectureInteractive ? <IgorArchitecture /> : <MediaSlot path={data.architecture!} alt={`${data.title} architecture diagram`} owner="CLAUDE" kind="Architecture diagram" {...siteConfig.architecture} />}</section>
+    {showArchitecture && <section class="case-study-section"><h2>Architecture</h2>{data.architectureInteractive ? <IgorArchitecture /> : <MediaSlot path={data.architecture!} alt={`${data.title} architecture diagram`} owner="CLAUDE" kind="Architecture diagram" {...siteConfig.architecture} />}</section>}
     <section class="case-study-section"><h2>Stack</h2><ul class="stack-tags">{data.stack.map(item => <li>{item}</li>)}</ul></section>
     <section class="case-study-section"><h2>What I learned</h2><p>{data.learnings}</p></section>
     <section class="case-study-section"><h2>Screenshots</h2><div class="screenshots">{data.screenshots.map(image => <MediaSlot path={image.path} alt={image.alt} owner="JONATHAN" kind="Screenshot" {...siteConfig.screenshots} />)}</div></section>
