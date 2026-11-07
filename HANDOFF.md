@@ -1,3 +1,14 @@
+# Portfolio handoff — 7 Nov 2026 (live)
+
+- LIVE: https://jonathan-dolan.vercel.app (Vercel hobby, manual deploys: `vercel --prod` from Terminal; GitHub pushes do not redeploy).
+- Content: Igor case study with interactive diagram and one Telegram screenshot; Trellife case study with a board screenshot, Architecture section hidden until `public/images/trellife-architecture.svg` exists.
+- Audit fixes applied 7 Nov (tap targets, mobile nav, og:image, robots.txt, transitions, label size). Lighthouse live: Home 100/100/100/100, Igor 100/99/100/100.
+- Secrets: gitleaks full-history scan clean (7 Nov). `.env*`, `.vercel/`, `.claude/` ignored.
+- Open: Trellife architecture diagram; Igor diagram heading order + SOLO button labels (a11y 99); README "open" list below is partly stale.
+- Full detail: ~/dev/shared-context/handoffs/2026-11-07-portfolio-go-live.md
+
+---
+
 # Portfolio scaffold handoff — 4 Nov 2026
 
 - Done: Astro 5 + MIT Case, Igor featured and Trellife second, English support-first Home/About/skills/contact, unchanged résumé PDF and all five image slots.
