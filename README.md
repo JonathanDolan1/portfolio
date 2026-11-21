@@ -27,7 +27,6 @@ The dev server normally serves at http://localhost:4321. Preview serves the buil
 | `src/components/MediaSlot.astro` | Real-image-or-placeholder rendering; rebuild after adding assets |
 | `src/styles/portfolio.css` | Portfolio adjustments to Case's retained styles |
 | `public/images/README.md` | The two diagram and three screenshot paths |
-| `TODO-igor-showcase.md` | Safe candidate modules and current-use evidence |
 | `docs/theme-configuration.md` | Documented former environment names and source equivalents |
 
 There is no blog, writing, speaking, journey, decision log, testimonial collection, or third project.
