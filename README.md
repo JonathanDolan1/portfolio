@@ -1,6 +1,6 @@
-# Jonathan Dolan — portfolio scaffold
+# Jonathan Dolan — portfolio
 
-Private, local-only scaffold for the approved 4 Nov 2026 batch. Astro 5.16.7, adapted from [Case](https://github.com/erlandv/case), MIT (original license retained). No fallback theme was used. Case supports per-project images through MDX and its image component; this scaffold adds explicit, accessible media slots with build-time file detection.
+Source for https://jonathan-dolan.vercel.app. Astro 5.16.7, adapted from [Case](https://github.com/erlandv/case), MIT (original license retained). Case supports per-project images through MDX and its image component; this site adds explicit, accessible media slots with build-time file detection.
 
 ## Run locally
 
@@ -54,24 +54,14 @@ All `.env*` entries were skipped unread during the source import and are ignored
 
 ## Content evidence
 
-Claims use `~/Documents/01_Work/Resume_Fact_Bank.md` and the existing English Path A résumé in `~/dev/job-search/Jonathan_Dolan_Resume_Path_A_2026-10-30.docx`. The matching PDF was copied unchanged to `public/resume.pdf` (SHA-256 `5971111bb5d566bf2c9d27d60d1816f46581fb6af5414b8ea34c44387dda3656`). The filename has no explicit v3 suffix; confirm the version label at the copy review. AI tools text was copied exactly from that document.
+Site claims match Jonathan's résumé. `public/resume.pdf` is the English résumé, copied unchanged, and the AI-tools line in `site.config.ts` is copied exactly from it.
 
-Wolt's documented Support Associate title and self-reported Shift Manager responsibilities are distinguished. Igor is personal work built with AI coding agents under Jonathan's direction and review. No personal Python/Linux administration or company production experience is claimed. Trellife has no asserted individual backend ownership and no live-demo link.
+Wolt's documented Support Associate title and self-reported Shift Manager responsibilities are distinguished. Igor is personal work built with AI coding agents under Jonathan's direction and review. No personal Python/Linux administration or company production experience is claimed. Trellife was a three-person bootcamp capstone with no asserted individual backend ownership.
 
-## Remaining content work
-
-- TODO-CLAUDE: final About copy; problem statements and learning points for both projects; Trellife solution text; final case-study copy and individual contribution review.
-- TODO-CLAUDE: two architecture diagrams at the exact paths in `public/images/README.md`.
-- TODO-JONATHAN: three reviewed screenshots, then accurate alt text describing the final assets. Copy only approved images into the repository.
-- TODO-VERIFY: iCloud CalDAV is not implemented in the inspected Igor code; Whisper code/readiness exists but same-day transcription was not verified. Do not turn either into an unsupported active-integration claim.
-- TODO-CLAUDE: prepare the sanitized Igor showcase separately. The planned GitHub address is displayed as a placeholder, not an active link to a nonexistent repository. No showcase repository or source excerpts were created in this batch.
-- TODO-CLAUDE: complete Trellife privacy/security review before publication.
-- TODO-CLAUDE: set the approved production URL in `site.config.ts` before the separately approved deployment; current canonical/sitemap URLs use localhost deliberately. Rebuild and recheck after copy/assets change.
-
-## Explain it in an interview
+## How it works
 
 Astro reads two project MDX files, validates their fields, and turns them into static HTML pages. Case supplies the theme's visual foundation. One source configuration controls public identity and navigation. Empty image slots show explicit placeholders; adding an approved image at the expected path and rebuilding replaces the placeholder. The browser only needs a small theme-toggle script. There is no portfolio backend, account, analytics or runtime AI call.
 
-## Next step and limits
+## Deploy
 
-Next content session: Claude, Opus, medium effort, on the Mac in `~/dev/portfolio`, Thursday 5 Nov at 10:15, following the approved brief. Add verified copy, two SVG diagrams and reviewed screenshots; resolve the explicitly marked evidence/version questions. Deployment to Vercel's free tier is a separate action and was not performed here. Keep the GitHub repository private.
+Hosted on Vercel's free tier. Deploys are manual (`vercel --prod`); pushing to GitHub does not deploy.
