@@ -43,7 +43,6 @@ CI: `.github/workflows/smoke.yml` runs the same `npm test` on every push and pul
 | `src/pages/index.astro` | Home, About, skills and contact sections |
 | `src/components/MediaSlot.astro` | Real-image-or-placeholder rendering; rebuild after adding assets |
 | `src/styles/portfolio.css` | Portfolio adjustments to Case's retained styles |
-| `public/images/README.md` | The two diagram and three screenshot paths |
 | `docs/theme-configuration.md` | Documented former environment names and source equivalents |
 
 There is no blog, writing, speaking, journey, decision log, testimonial collection, or third project.
