@@ -40,6 +40,9 @@ Desktop.ini
 
 # test coverage
 coverage/
+test-results/
+playwright-report/
+blob-report/
 *.lcov
 
 # caches
